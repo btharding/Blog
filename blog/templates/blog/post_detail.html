@@ -1,0 +1,69 @@
+{%extends 'blog/base.html'%}
+{% block content %}
+  <div class = "posts single">
+    {% if post.published_date %}
+      <div class = "post">
+        <ul class = "horizontal-list">
+          <li><h1 class = "title">{{post.title}}</h1></li>
+          {% if user.is_authenticated %}
+            <li class = "admin">
+              <h3 class = "title">
+                <a class = "confirm" href="{% url 'post_edit' pk=post.pk draft=0%}">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+              </h3>
+            </li>
+            <li class = "admin">
+              <h3 class = "title">
+                <a href = "{% url 'post_delete' pk=post.pk%}">
+                  <span style = "margin-right: 20px;"class="glyphicon glyphicon-trash"></span>
+                </a>
+              </h3>
+            </li>
+          {% endif %}
+        </ul>
+        <p class = "date">{{post.published_date}}</p>
+        <hr>
+        <p class = "content">{{post.text|linebreaksbr}}</p>
+      </div>
+
+      <div class = "comments">
+        <h2>Comments</h2>
+        <a href="{% url 'add_comment_to_post' pk=post.pk %}"><h3>Add comment</h3></a>
+        {% for comment in post.comments.all %}
+          {%if user.is_authenticated or comment.approved_comment %}
+            <div class = "comment {%if not comment.approved_comment%}unapproved{%endif%}">
+                <ul class = "horizontal-list">
+                  <li><h3 class = "author">{{comment.authorName}}</h3></li>
+                  {%if not comment.approved_comment%}
+                    <li class = "admin">
+                      <a href = "{%url 'approve_comment' pk=comment.pk%}">
+                        <span class="glyphicon glyphicon-check"></span>
+                      </a>
+                    </li>
+                    <li class = "admin">
+                      <a href = "{%url 'delete_comment' pk=comment.pk%}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </a>
+                    </li>
+                  {%else%}
+                    {%if user.is_authenticated%}
+                      <li class = "admin">
+                        <a href = "{%url 'delete_comment' pk=comment.pk%}">
+                          <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                      </li>
+                    {%endif%}
+                  {%endif%}
+                </ul>
+              <p class = "date">{{comment.created_date}}</p>
+              <p class = "content">{{comment.text|linebreaksbr}}</p>
+            </div>
+          {%endif%}
+        {%endfor%}
+      </div>
+    {%else%}
+      <h1>POST NOT FOUND</h1>
+    {%endif%}
+  </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load static %}
+<html>
+  <head>
+    <title>Billy Harding</title>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type = "text/javascript">
+    $('a.confirm').click(function(){console.log("hello");})
+    </script>
+  </head>
+  <body>
+    <div class = "container">
+      <div class = "header">
+        <ul class = "horizontal-list">
+          <li><h1><a class = "confirm" href = "{%url 'post_list'%}">BH</a></h1></li>
+          {% if user.is_authenticated %}
+            <li class = "admin"><h2>
+              <a href = "{% url 'logout' %}">
+                <span class = "glyphicon glyphicon-log-out"></span>
+              </a>
+            </h2></li>
+            <li class = "admin"><h2>
+              <a href = "{% url 'post_draft_list'%}">
+                DRAFTS
+              </a>
+            </h2></li>
+            <li class = "admin"><h2>
+              <a href = "{% url 'post_new'%}">
+                NEW
+              </a>
+            </h2></li>
+          {%else%}
+            <li class = "admin"><h2>
+              <a href = "{%url 'login'%}">
+                <span style = "margin-right: 30px;" class = "glyphicon glyphicon-log-in"></span>
+              </a>
+            </h2></li>
+          {% endif %}
+        </ul>
+      </div>
+        {%block content%}
+        {%endblock%}
+    </div>
+  </body>
+</html>

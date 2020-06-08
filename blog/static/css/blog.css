@@ -1,0 +1,112 @@
+html, body{
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  color: black;
+  font-family: "arial";
+}
+div{
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none !important;
+  color: black !important;
+}
+a:hover{
+  color: #555 !important;
+}
+
+ul.horizontal-list{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+ul.horizontal-list li{
+  display: block;
+  float: left;
+  margin: 0px;
+}
+
+.container{
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  background-color: #ddf;
+}
+
+.header{
+  width: 100%;
+  background-color: #d2d2e2;
+  padding-left: 20px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.header ul li.admin{
+  float: right;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.posts{
+  width: 100%;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.posts.single{
+  flex-grow: 1;
+}
+
+.post{
+  flex-grow: 1;
+  margin-bottom: 20px;
+  background-color: #d2d2e2;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.post ul li.admin{
+  float: right;
+}
+
+h1.title{
+  font-size: 3em;
+  margin-bottom: 0;
+  margin-top: 2px;
+}
+
+p.date{
+  margin-top: 0;
+  color: #6e6e77;
+}
+
+h3.author{
+  margin-bottom: 0;
+  margin-top: 2px;
+}
+
+.post hr{
+  width: 100%;
+  border: 1px solid #6e6e77;
+}
+
+.comment{
+  padding-left: 15px;
+}
+
+.comment ul li.admin{
+  float: right;
+  margin-left: 10px;
+}
+
+.comment.unapproved{
+  color: red;
+}
+
+.comment.unapproved p.date{
+  color: red;
+}

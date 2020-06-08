@@ -1,0 +1,36 @@
+{%extends "blog/base.html"%}
+{% block content %}
+  <div class = "posts">
+    {% for post in posts %}
+    <div class = "post">
+      <ul class = "horizontal-list">
+        <li><h1>{{post.title}}</h1></li>
+          <li class = "admin">
+            <h2>
+              <a href = "{% url 'post_delete' pk=post.pk%}">
+                <span class="glyphicon glyphicon-trash"></span>
+              </a>
+            </h2>
+          </li>
+          <li class = "admin">
+            <h2>
+              <a href = "{% url 'post_publish' pk=post.pk%}">
+                <span style = "margin-right:20px;" class="glyphicon glyphicon-upload"></span>
+              </a>
+            </h2>
+          </li>
+          <li class = "admin">
+            <h2 class = "title">
+              <a href="{% url 'post_edit' pk=post.pk draft=1 %}">
+                <span style = "margin-right:20px;" class="glyphicon glyphicon-pencil"></span>
+              </a>
+            </h2>
+          </li>
+      </ul>
+      <p class = "date">Created: {{post.created_date|date:'d-m-Y'}}</p>
+      <hr>
+      <p class = "content">{{post.text|linebreaksbr}}</p>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
