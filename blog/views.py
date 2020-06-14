@@ -70,6 +70,12 @@ def post_publish(request, pk):
     return redirect('post_detail', pk=pk)
 
 @login_required
+def post_unpublish(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.unpublish()
+    return redirect('post_list')
+
+@login_required
 def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
@@ -99,3 +105,6 @@ def delete_comment(request,pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('post_detail', pk=comment.post.pk)
+
+def custom_404(request):
+    return render(request, "404.html", {})

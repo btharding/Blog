@@ -1,19 +1,36 @@
+@font-face {
+    font-family: 'bebas';
+    src: local("Bebas"), url('../fonts/BebasNeue-Regular.ttf') format("truetype");
+}
+
+:root{
+  --main-text-color: #336;
+  --highlight-color: #000;
+  --bg-color-1: #ccf;
+  --bg-color-2: #c2c2f2;
+  --accent-color: #fffdd0;
+}
+
 html, body{
   width: 100%;
   min-height: 100%;
   margin: 0;
-  color: black;
-  font-family: "arial";
+  color: var(--main-text-color);
+  font-family: "bebas", arial !important;
 }
+body p{
+  font-family: arial !important;
+}
+
 div{
   box-sizing: border-box;
 }
 a{
   text-decoration: none !important;
-  color: black !important;
+  color: var(--main-text-color) !important;
 }
 a:hover{
-  color: #555 !important;
+  color: var(--bg-color-2) !important;
 }
 
 ul.horizontal-list{
@@ -34,15 +51,22 @@ ul.horizontal-list li{
   display: flex;
   flex-direction: column;
   align-items: baseline;
-  background-color: #ddf;
+  background-color: var(--bg-color-1);
+  color: var(--main-text-color);
 }
 
 .header{
   width: 100%;
-  background-color: #d2d2e2;
+  background-color: rgba(0,0,0,0);
   padding-left: 20px;
   padding-top: 1px;
   padding-bottom: 1px;
+}
+.header a{
+  color: var(--highlight-color) !important;
+}
+.header a:hover{
+  color: var(--main-text-color) !important;
 }
 
 .header ul li.admin{
@@ -64,9 +88,17 @@ ul.horizontal-list li{
 .post{
   flex-grow: 1;
   margin-bottom: 20px;
-  background-color: #d2d2e2;
+  background-color: var(--bg-color-2);
   padding-left: 20px;
   padding-right: 20px;
+  color: var(--main-text-color);
+}
+
+.post a{
+  color: var(--main-text-color) !important;
+}
+.post a:hover{
+  color: var(--accent-color) !important;
 }
 
 .post ul li.admin{
@@ -81,7 +113,7 @@ h1.title{
 
 p.date{
   margin-top: 0;
-  color: #6e6e77;
+  color: var(--accent-color);
 }
 
 h3.author{
@@ -89,13 +121,28 @@ h3.author{
   margin-top: 2px;
 }
 
-.post hr{
+hr{
   width: 100%;
-  border: 1px solid #6e6e77;
+  border: 1px solid var(--accent-color) !important;
+}
+
+.comments h2{
+    color: var(--main-text-color);
+}
+
+.comments h3 a{
+  color: var(--highlight-color) !important;
+}
+.comments h3 a:hover{
+  color: var(--main-text-color) !important;
 }
 
 .comment{
+  padding: 5px;
   padding-left: 15px;
+  background-color: var(--bg-color-2);
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .comment ul li.admin{
@@ -109,4 +156,11 @@ h3.author{
 
 .comment.unapproved p.date{
   color: red;
+}
+
+.footer{
+  height: 50px;
+  position: fixed;
+  bottom: 20px;
+  right: 50px;
 }

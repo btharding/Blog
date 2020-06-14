@@ -31,6 +31,8 @@
       <hr>
       <p class = "content">{{post.text|linebreaksbr}}</p>
     </div>
+    {%empty%}
+      <h1>No Drafts</h1>
     {% endfor %}
   </div>
 {% endblock %}
